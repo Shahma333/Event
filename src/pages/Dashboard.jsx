@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
 import { setEvents } from "../Redux/eventSlice";
 
@@ -9,7 +8,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const events = useSelector((state) => state.events.events);
-  const { user, token, isAuthenticated } = useSelector((state) => state.auth);
+  const { user, token, isAuthenticated } = useSelector((state) => state.users);
   const [newEvent, setNewEvent] = useState({ title: "", date: "", location: "" });
 
   useEffect(() => {
@@ -19,6 +18,7 @@ const Dashboard = () => {
       fetchEvents();
     }
   }, [isAuthenticated, navigate]);
+  console.log("isAuthenticated:", isAuthenticated);
 
   const fetchEvents = async () => {
     try {

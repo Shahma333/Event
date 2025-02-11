@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:2020/api/user/login", formData);
+      const res = await axios.post("http://localhost:2020/api/users/login", formData);
       dispatch(login(res.data));
       navigate("/dashboard");
     } catch (error) {

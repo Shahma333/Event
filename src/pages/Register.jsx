@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { api } from "../axios";
 
 const Register = () => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
@@ -9,12 +9,16 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:2020/api/user/register", formData);
+      const res =await api.post("/register", formData, {
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log(res.data);
       navigate("/login");
     } catch (error) {
-      console.error(error.response.data.message);
+      console.error(error.response?.data?.message || "Server error");
     }
   };
+
 
   return (
     <div className="register-container">
