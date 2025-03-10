@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-
-import { userReducer } from "./userSlice";
-import { eventReducer } from "./eventSlice";
+import { authReducer } from "./authSlice";  // ✅ Named import
+import { eventReducer } from "./eventSlice"; // ✅ Named import
 
 const store = configureStore({
   reducer: {
-    users: userReducer,
-    events: eventReducer,
+    auth: authReducer, 
+    events: eventReducer, 
   },
 });
 
